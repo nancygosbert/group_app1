@@ -1,0 +1,255 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>authByuser</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Include Bootstrap CSS --
+   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">-->
+    <!-- Include your custom CSS if any -->
+    <link rel="stylesheet" href="{% static 'style5.css' %}" />
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+
+    <style>
+      .background-radial-gradient {
+        background-color: hsl(218, 41%, 15%);
+        background-image: radial-gradient(
+            650px circle at 0% 0%,
+            hsl(218, 41%, 35%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%
+          ),
+          radial-gradient(
+            1250px circle at 100% 100%,
+            hsl(218, 41%, 45%) 15%,
+            hsl(218, 41%, 30%) 35%,
+            hsl(218, 41%, 20%) 75%,
+            hsl(218, 41%, 19%) 80%,
+            transparent 100%
+          );
+      }
+
+      #radius-shape-1 {
+        height: 220px;
+        width: 220px;
+        top: -60px;
+        left: -130px;
+        background: radial-gradient(#44006b, #ad1fff);
+        overflow: hidden;
+      }
+
+      #radius-shape-2 {
+        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+        bottom: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(#44006b, #ad1fff);
+        overflow: hidden;
+      }
+
+      .bg-glass {
+        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!-- place navbar here -->
+    </header>
+    <main>
+      <!-- Section: Design Block -->
+      <section class="background-radial-gradient overflow-hidden">
+        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+          <div class="row gx-lg-5 align-items-center mb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+              <h1
+                class="my-5 display-5 fw-bold ls-tight"
+                style="color: hsl(218, 81%, 95%)"
+              >
+                Login <br />
+                <span style="color: hsl(218, 81%, 75%)">to your account</span>
+              </h1>
+              <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                Congratulations on creating your account! By creating an account
+                with us, you've taken a significant step towards a smoother and
+                more efficient experience. We appreciate your decision to join
+                our car registration system and look forward to serving you.
+                With your account, you'll have access to a range of benefits,
+                including streamlined registration processes, easy document
+                management, and personalized assistance. We're here to simplify
+                your car registration journey and ensure your satisfaction.
+                Thank you for entrusting us with your vehicle registration
+                needs. Should you have any questions or require any assistance,
+                our dedicated support team is always ready to help. Once again,
+                welcome aboard, and we're excited to have you as part of our
+                community! Best regards, The Car Registration System Team
+              </p>
+            </div>
+
+            <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+              <div
+                id="radius-shape-1"
+                class="position-absolute rounded-circle shadow-5-strong"
+              ></div>
+              <div
+                id="radius-shape-2"
+                class="position-absolute shadow-5-strong"
+              ></div>
+
+              <div class="card bg-glass">
+                <div class="card-body px-4 py-5 px-md-5">
+                  {% if messages %} {% for message in messages %}
+                  <div
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {{ message }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  {% endfor %} {% endif %}
+                  <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                      />
+                      <label class="form-label" for="email"
+                        >Email address</label
+                      >
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                      />
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+
+                    <div class="row mb-4">
+                      <!-- Remember me checkbox -->
+                      <div class="col d-flex justify-content-center">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="remember_me"
+                            name="remember_me"
+                            checked
+                          />
+                          <label class="form-check-label" for="remember_me"
+                            >Remember me</label
+                          >
+                        </div>
+                      </div>
+
+                      <!-- Forgot password link -->
+                      <div class="col">
+                        <a href="{% url 'forgot' %}">Forgot password?</a>
+                      </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block mb-4"
+                    >
+                      Sign in
+                    </button>
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                      <p>
+                        Not a member? <a href="{% url 'signup' %}">Register</a>
+                      </p>
+                      <p>or sign in with:</p>
+                      <button
+                        type="button"
+                        class="btn btn-link btn-floating mx-1"
+                      >
+                        <i class="fab fa-facebook-f"></i>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-link btn-floating mx-1"
+                      >
+                        <i class="fab fa-google"></i>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-link btn-floating mx-1"
+                      >
+                        <i class="fab fa-twitter"></i>
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-link btn-floating mx-1"
+                      >
+                        <i class="fab fa-github"></i>
+                      </button>
+                    </div>
+                  </form>
+                
+
+                  <!-- Rest of the login form -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Section: Design Block -->
+    </main>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+      integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
